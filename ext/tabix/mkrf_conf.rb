@@ -37,7 +37,7 @@ task :compile do
     #sh "patch < ../Makefile-bioruby.patch"
     sh "make"
     cp("libtabix.a","#{path_external}")
-    case Config::CONFIG['host_os']
+    case RbConfig::CONFIG['host_os']
       when /linux/
         sh "make libtabix.so.1"
         cp("libtabix.so.1","#{path_external}")
