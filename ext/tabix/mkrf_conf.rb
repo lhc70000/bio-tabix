@@ -27,14 +27,14 @@ task :download do
   open(URL) do |uri|
     File.open("#{TabixFile}",'wb') do |fout|
       fout.write(uri.read)
-    end #fout 
+    end #fout
   end #uri
 end
-    
+
 task :compile do
   sh "unzip #{TabixFile}"
   cd("tabix-master") do
-    #sh "patch < ../Makefile-bioruby.patch"
+    sh "patch < ../Makefile-bioruby.patch"
     sh "make"
     cp("libtabix.a","#{path_external}")
     case RbConfig::CONFIG['host_os']
@@ -52,7 +52,7 @@ task :compile do
     chmod 0755, "#{path}/../../lib/bio/tabix/bgzip"
   end #cd
 end
-  
+
 task :clean do
   # cd("tabix-#{Version}") do
   #   sh "make clean"
@@ -67,7 +67,7 @@ task :clean do
 end
 
 task :default => [:download, :compile, :clean]
-  
+
 RAKE
-  
+
 end

@@ -1,0 +1,13 @@
+diff --git a/Makefile b/Makefile
+index 9c8e917..947b981 100644
+--- a/Makefile
++++ b/Makefile
+@@ -32,7 +32,7 @@ libtabix.so.1:$(LOBJS)
+ 		$(CC) -shared -Wl,-soname,libtabix.so -o $@ $(LOBJS) -lc -lz
+ 
+ libtabix.1.dylib:$(LOBJS)
+-		libtool -dynamic $(LOBJS) -o $@ -lc -lz
++		$(CC) -dynamiclib $(LOBJS) -o $@ -lc -lz
+ 
+ libtabix.a:$(LOBJS)
+ 		$(AR) -csru $@ $(LOBJS)
